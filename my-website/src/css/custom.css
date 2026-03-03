@@ -1,30 +1,108 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Premium Design System for Backend Notes
+ * Focused on professional royal blues, sleek grays, and glassmorphism.
  */
 
-/* You can override the default Infima variables here. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* HSL Color Palette - Royal & Trust */
+  --ifm-color-primary: #1a365d;
+  --ifm-color-primary-dark: #152c4d;
+  --ifm-color-primary-darker: #132948;
+  --ifm-color-primary-darkest: #10223b;
+  --ifm-color-primary-light: #2c5282;
+  --ifm-color-primary-lighter: #2b6cb0;
+  --ifm-color-primary-lightest: #4299e1;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont;
+  --ifm-heading-font-family: 'Inter', system-ui, sans-serif;
+  
+  /* Layout & Spacing */
+  --ifm-container-width: 1140px;
+  --ifm-navbar-height: 4rem;
+  
+  /* Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #63b3ed;
+  --ifm-color-primary-dark: #4299e1;
+  --ifm-color-primary-darker: #3182ce;
+  --ifm-color-primary-darkest: #2b6cb0;
+  --ifm-color-primary-light: #90cdf4;
+  --ifm-color-primary-lighter: #bee3f8;
+  --ifm-color-primary-lightest: #ebf8ff;
+  
+  --glass-bg: rgba(26, 32, 44, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  
+  --ifm-background-color: #0f172a;
+  --ifm-navbar-background-color: #0f172a;
+}
+
+/* Global Aesthetics */
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease;
+}
+
+.footer {
+  background-color: var(--ifm-color-primary-darkest);
+  border-top: 1px solid var(--glass-border);
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark) 0%, var(--ifm-color-primary) 100%);
+  color: white;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(66, 153, 225, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.button--secondary {
+  background-color: white;
+  color: var(--ifm-color-primary);
+  border: none;
+  font-weight: 600;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.button--secondary:hover {
+  background-color: #f7fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Documentation Styling */
+.theme-doc-markdown h1 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.theme-doc-markdown p {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--ifm-font-color-base);
+}
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--glass-border);
 }
