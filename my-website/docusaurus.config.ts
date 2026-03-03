@@ -90,11 +90,11 @@ const config: Config = {
           items: [
             {
               label: 'Roadmap',
-              to: '/docs/transcripts/01_Roadmap_for_backend_from_first_principles',
+              to: '/docs/transcripts/Roadmap_for_backend_from_first_principles',
             },
             {
               label: 'System Design',
-              to: '/docs/transcripts/02_What_is_system_design',
+              to: '/docs/transcripts/Walk_the_path_of_a_true_backend_engineer',
             },
           ],
         },

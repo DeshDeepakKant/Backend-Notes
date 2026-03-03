@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/transcripts/01_Roadmap_for_backend_from_first_principles">
+            to="/docs/transcripts/Roadmap_for_backend_from_first_principles">
             View the Roadmap 🚀
           </Link>
         </div>
@@ -33,7 +33,7 @@ const FeatureList = [
     title: 'Backend Engineering',
     description: 'Complete transcripts and deep-dive notes from the Backend from First Principles series.',
     icon: '🏗️',
-    link: '/docs/transcripts/01_Roadmap_for_backend_from_first_principles',
+    link: '/docs/transcripts/Roadmap_for_backend_from_first_principles',
   },
   {
     title: 'Core Systems',
