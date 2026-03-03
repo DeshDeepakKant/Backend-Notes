@@ -1,3 +1,8 @@
+---
+title: "Complete REST API Design"
+slug: "/backend/11_REST_API"
+---
+
 # Complete REST API Design
 
 REST (Representational State Transfer) is the industry-standard architectural style for building scalable web APIs. Designing a professional API requires more than just making it work; it must be intuitive, consistent, and standard-compliant.

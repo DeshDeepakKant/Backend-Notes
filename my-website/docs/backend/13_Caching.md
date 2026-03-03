@@ -1,6 +1,6 @@
 ---
-sidebar_position: 13
-title: Caching - The Secret Behind It All
+title: "Caching: The Secret Behind It All"
+slug: "/backend/13_Caching"
 ---
 
 # Caching: The Secret Behind It All

@@ -1,3 +1,8 @@
+---
+title: "Authentication and Authorization"
+slug: "/backend/08_Authentication"
+---
+
 # Authentication and Authorization
 
 In backend engineering, securing an application revolves around two fundamental questions:

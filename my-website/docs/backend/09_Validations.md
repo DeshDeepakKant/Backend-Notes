@@ -1,3 +1,8 @@
+---
+title: "Validations and Transformations"
+slug: "/backend/09_Validations"
+---
+
 # Validations and Transformations
 
 Validations and transformations are critical for maintaining **Data Integrity** and **Security**. They act as a protective layer at the entry point of your server (the Controller Layer), ensuring that data is in the expected format before it reaches your business logic.

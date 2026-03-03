@@ -1,3 +1,8 @@
+---
+title: "Task Queues and Background Jobs"
+slug: "/backend/14_Task_Queues"
+---
+
 # Task Queues and Background Jobs
 
 In backend engineering, not every task needs to be completed within the context of a single request-response cycle. Background jobs and task queues are essential for building responsive, scalable, and reliable applications.

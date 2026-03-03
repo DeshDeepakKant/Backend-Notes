@@ -1,3 +1,8 @@
+---
+title: "Benefits of Learning Backend Engineering from First Principles"
+slug: "/backend/04_Benefits"
+---
+
 # Benefits of Learning Backend Engineering from First Principles
 
 In a rapidly evolving tech landscape, the most valuable skill a backend engineer can possess is the ability to adapt. Learning from "First Principles" means focusing on the underlying truths of computing and networking rather than the surface-level syntax of any specific framework or language.

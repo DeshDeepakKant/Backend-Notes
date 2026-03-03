@@ -1,3 +1,8 @@
+---
+title: "Mastering Databases with PostgreSQL"
+slug: "/backend/12_PostgreSQL"
+---
+
 # Mastering Databases with PostgreSQL
 
 Databases are the foundation of any backend system. Understanding how to model, query, and optimize data storage is critical for building scalable applications.

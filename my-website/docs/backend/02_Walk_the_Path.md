@@ -1,3 +1,8 @@
+---
+title: "Walking the Path of a Professional Backend Engineer"
+slug: "/backend/02_Walk_the_Path"
+---
+
 # Walking the Path of a Professional Backend Engineer
 
 Becoming a proficient backend engineer is a journey of mastering systems, protocols, and architectural patterns. It requires a shift from simply "writing code" to "designing systems" that are resilient, performant, and secure.

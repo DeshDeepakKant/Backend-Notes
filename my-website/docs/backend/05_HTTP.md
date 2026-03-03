@@ -1,3 +1,8 @@
+---
+title: "Understanding HTTP for Backend Engineers"
+slug: "/backend/05_HTTP"
+---
+
 # Understanding HTTP for Backend Engineers
 
 HTTP (Hypertext Transfer Protocol) is the foundation of data communication on the World Wide Web. For backend engineers, a deep understanding of HTTP is essential, as it defines how clients and servers interact, exchange data, and manage state.

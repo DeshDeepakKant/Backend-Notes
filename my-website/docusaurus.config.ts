@@ -42,6 +42,17 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: 'Version 2 (Modern)',
+              path: '',
+            },
+            '1.0.0': {
+              label: 'Version 1 (Original)',
+              path: '1.0.0',
+            },
+          },
         },
         blog: false,
         theme: {
@@ -76,6 +87,10 @@ const config: Config = {
           label: 'Start Learning',
         },
         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/DeshDeepakKant/Backend-Notes',
           label: 'GitHub',
           position: 'right',
@@ -90,11 +105,11 @@ const config: Config = {
           items: [
             {
               label: 'Roadmap',
-              to: '/docs/transcripts/Roadmap_for_backend_from_first_principles',
+              to: '/docs/backend/01_Roadmap',
             },
             {
               label: 'System Design',
-              to: '/docs/transcripts/Walk_the_path_of_a_true_backend_engineer',
+              to: '/docs/backend/02_Walk_the_Path',
             },
           ],
         },

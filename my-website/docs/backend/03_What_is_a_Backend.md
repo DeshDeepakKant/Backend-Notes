@@ -1,3 +1,8 @@
+---
+title: "What is a Backend?"
+slug: "/backend/03_What_is_a_Backend"
+---
+
 # What is a Backend?
 
 In the context of modern web and mobile applications, the "backend" refers to the part of the system that remains invisible to the end user but is responsible for the heavy lifting: data processing, business logic, and security.

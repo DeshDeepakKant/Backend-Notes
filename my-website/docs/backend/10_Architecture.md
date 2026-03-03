@@ -1,3 +1,8 @@
+---
+title: "Backend Architecture: Controllers, Services, and Middleware"
+slug: "/backend/10_Architecture"
+---
+
 # Backend Architecture: Controllers, Services, and Middleware
 
 A professional backend application is structured into distinct layers to ensure scalability, maintainability, and clear separation of concerns. This layered approach follows the **Request Life Cycle** from the moment it hits the server until a response is sent.

@@ -1,3 +1,8 @@
+---
+title: "Serialization and Deserialization in Backend Development"
+slug: "/backend/07_Serialization"
+---
+
 # Serialization and Deserialization in Backend Development
 
 Serialization and Deserialization is the process of converting data structures or object states into a format that can be stored or transmitted and later reconstructed. In backend engineering, this is the "bridge" that allows different systems, often written in different programming languages, to communicate seamlessly.

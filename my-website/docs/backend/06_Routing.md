@@ -1,3 +1,8 @@
+---
+title: "Routing in Backend Development"
+slug: "/backend/06_Routing"
+---
+
 # Routing in Backend Development
 
 Routing is the mechanism that maps incoming HTTP requests to specific server-side logic, known as **handlers**. It is essentially the "address system" of your backend, determining where a request should go based on its destination and intent.
