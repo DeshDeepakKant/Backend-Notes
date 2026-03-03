@@ -45,7 +45,7 @@ accept
 accept-encoding
 gzip, deflate, br, zstd
 accept-language
-en-US,en;q=0.5
+en-US,en;q=0.5[text](my-website/docs)
 authorization
 SAPISIDHASH 1772540396_cb1d4dea96f6bc01826dfce6a1baccbb3239f3b2_u SAPISID1PHASH 1772540396_cb1d4dea96f6bc01826dfce6a1baccbb3239f3b2_u SAPISID3PHASH 1772540396_cb1d4dea96f6bc01826dfce6a1baccbb3239f3b2_u
 content-length
