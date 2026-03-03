@@ -1,0 +1,46 @@
+1. Roadmap for backend from first principles
+0Rwb4Xmlcwc
+2. Walk the path of a true backend engineer
+3qFjZbFRSAU
+3. What is a Backend, how do they work and why do we need them?
+6Ss4dJD9Kzg
+4. Benefits of learning backend engineering from first principles
+6fqZs5Z3k9A
+5. Understanding HTTP for backend engineers, where it all starts
+a3C1DMswClQ
+6. What is Routing in Backend? How Requests Find Their Way Home
+SubuU1iOC2s
+7. Serialization and Deserialization for backend engineers
+vzg90tY3uM0
+8. Authentication and authorization for backend engineers
+A95rliroC8Q
+9. Validations and transformations for backend engineers
+qedj_JjjL-U
+10. What are controllers, services, repositories, middlewares and request context?
+hyc-7w3pee8
+11. Complete REST API Design
+RG6q57DwV8Y
+12. Mastering Databases with Postgres
+F7Vwp2Xo5Do
+13. Caching, the secret behind it all
+estH64OkwxU
+14. Task queues and background jobs
+r-nQsyguU1Y
+15. Full text search using Elasticsearch for blazingly fast search
+7_sovzAhRSM
+16. Error Handling and Building Fault Tolerant Systems
+8NaM_9aKS24
+17. Production-grade Configuration Management
+GR9NtirPXyc
+18. Logging, Monitoring and Observability
+5PEuwgLOQQM
+19. Graceful Shutdown
+6rfBgphiCWM
+20. Backend Security: Everything You Need to Know
+xB1C1xZZW4k
+21.1. Backend Scaling and Performance Engineering: Part-1
+z7kt_p44rjs
+21.2. Backend Scaling and Performance Engineering: Part-2
+sOhAopEwjH4
+22. Concurrency & Parallelism: IO Bound vs CPU Bound
+bs9MEYRTA30
