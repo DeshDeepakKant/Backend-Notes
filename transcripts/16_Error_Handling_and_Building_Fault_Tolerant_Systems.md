@@ -492,3 +492,5 @@ Usually in middleware .
 Robust backend systems are not built by avoiding errors, 
 but by expecting, handling, and recovering from them intelligently.
 ```
+https://owasp.org/www-project-top-ten/
+https://owasp.org/www-project-cheat-sheets/ - Very Important Reading
