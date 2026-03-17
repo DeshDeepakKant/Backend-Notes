@@ -1,364 +1,170 @@
-1
-00:00:00,160 --> 00:00:04,600
-now before we get to the meat of it I
-
-2
-00:00:02,760 --> 00:00:07,000
-want you to know exactly what to expect
-
-3
-00:00:04,600 --> 00:00:10,639
-from these videos and how to learn from
-
-4
-00:00:07,000 --> 00:00:14,080
-them so let's get our expectations
-
-5
-00:00:10,639 --> 00:00:15,440
-clear in this particular playlist which
-
-6
-00:00:14,080 --> 00:00:17,760
-we are currently
-
-7
-00:00:15,440 --> 00:00:19,800
-watching I want to tell everyone the
-
-8
-00:00:17,760 --> 00:00:22,439
-story of backend engineering the
-
-9
-00:00:19,800 --> 00:00:24,519
-philosophies behind it the big questions
-
-10
-00:00:22,439 --> 00:00:25,920
-and the inner workings and the
-
-11
-00:00:24,519 --> 00:00:27,160
-collaborations between different
-
-12
-00:00:25,920 --> 00:00:29,279
-components and
-
-13
-00:00:27,160 --> 00:00:30,920
-machines the narration will help you see
-
-14
-00:00:29,279 --> 00:00:34,440
-the big picture of of a production grade
-
-15
-00:00:30,920 --> 00:00:36,480
-back end and help you appreciate the
-
-16
-00:00:34,440 --> 00:00:38,760
-concepts that are abstracted by the
-
-17
-00:00:36,480 --> 00:00:42,840
-languages run times Frameworks and
-
-18
-00:00:38,760 --> 00:00:46,640
-libraries that we use every day so let's
-
-19
-00:00:42,840 --> 00:00:49,680
-write it down so this playlist is about
-
-20
-00:00:46,640 --> 00:00:52,680
-the story
-
-21
-00:00:49,680 --> 00:00:52,680
-and
-
-22
-00:00:53,399 --> 00:00:58,760
-philosophy right and this is the first
-
-23
-00:00:56,800 --> 00:01:01,719
-step towards being a backend engineer
-
-24
-00:00:58,760 --> 00:01:04,320
-with language agnostic skills right
-
-25
-00:01:01,719 --> 00:01:06,880
-skills which are Beyond Frameworks or or
-
-26
-00:01:04,320 --> 00:01:09,479
-or any particular library that you use
-
-27
-00:01:06,880 --> 00:01:12,200
-and work with every
-
-28
-00:01:09,479 --> 00:01:13,759
-day once you have the foundations clear
-
-29
-00:01:12,200 --> 00:01:15,000
-once you start to see the common
-
-30
-00:01:13,759 --> 00:01:16,680
-patterns behind every backend
-
-31
-00:01:15,000 --> 00:01:18,720
-application and understand the
-
-32
-00:01:16,680 --> 00:01:21,880
-philosophies how the dots connect
-
-33
-00:01:18,720 --> 00:01:23,360
-together now that is the best time to
-
-34
-00:01:21,880 --> 00:01:25,720
-talk about
-
-35
-00:01:23,360 --> 00:01:28,600
-implementations to see how all these
-
-36
-00:01:25,720 --> 00:01:30,759
-principles come together to create a
-
-37
-00:01:28,600 --> 00:01:33,320
-complete backend application
-
-38
-00:01:30,759 --> 00:01:37,320
-and how all of them look and work in
-
-39
-00:01:33,320 --> 00:01:40,320
-actual code so let's write it
-
-40
-00:01:37,320 --> 00:01:40,320
-down
-
-41
-00:01:41,439 --> 00:01:46,920
-impation and this is the point where we
-
-42
-00:01:44,600 --> 00:01:50,479
-have to choose our language our
-
-43
-00:01:46,920 --> 00:01:52,520
-ecosystem and at this point I am
-
-44
-00:01:50,479 --> 00:01:55,560
-planning on releasing two versions one
-
-45
-00:01:52,520 --> 00:01:58,240
-in nodejs and the second one in goang
-
-46
-00:01:55,560 --> 00:02:00,840
-since those are the two languages that I
-
-47
-00:01:58,240 --> 00:02:05,560
-have firsthand experience in that I work
-
-48
-00:02:00,840 --> 00:02:07,319
-with every day now in this phase which
-
-49
-00:02:05,560 --> 00:02:10,080
-will be again another
-
-50
-00:02:07,319 --> 00:02:12,319
-playlist we will pick each principle and
-
-51
-00:02:10,080 --> 00:02:15,879
-deep dive on it in that particular
-
-52
-00:02:12,319 --> 00:02:19,640
-language and the surrounding ecosystem
-
-53
-00:02:15,879 --> 00:02:22,080
-so in a way most videos of this playlist
-
-54
-00:02:19,640 --> 00:02:25,560
-will have an Associated implementation
-
-55
-00:02:22,080 --> 00:02:27,560
-specific video in the next playist right
-
-56
-00:02:25,560 --> 00:02:29,200
-for example in one of the principles we
-
-57
-00:02:27,560 --> 00:02:30,959
-will talk about databases and drivers
-
-58
-00:02:29,200 --> 00:02:33,160
-and migration and all the concepts
-
-59
-00:02:30,959 --> 00:02:35,480
-surrounding databases that backend
-
-60
-00:02:33,160 --> 00:02:37,319
-Engineers deal with day to-day so the
-
-61
-00:02:35,480 --> 00:02:39,519
-nodejs and goang playlist will have an
-
-62
-00:02:37,319 --> 00:02:42,040
-implementation of that where we Deep
-
-63
-00:02:39,519 --> 00:02:44,239
-dive on let's say postgress with the
-
-64
-00:02:42,040 --> 00:02:47,800
-JavaScript driver postgress JS or the
-
-65
-00:02:44,239 --> 00:02:49,560
-goine driver PGX and cover every single
-
-66
-00:02:47,800 --> 00:02:53,040
-concept around
-
-67
-00:02:49,560 --> 00:02:56,080
-that now in the third phase this is
+# Backend Engineering Learning Approach
 
-68
-00:02:53,040 --> 00:02:58,480
-where everything comes together all our
+## Purpose of the Playlist
 
-69
-00:02:56,080 --> 00:03:01,200
-Concepts all our language specific deep
+* The playlist focuses on:
 
-70
-00:02:58,480 --> 00:03:02,800
-Dives all our philosophies and now here
+  * The **story of backend engineering**
+  * The **philosophies behind systems**
+  * The **big questions and inner workings**
+* Explains:
 
-71
-00:03:01,200 --> 00:03:04,680
-we will build production grade projects
+  * How different components interact
+  * How machines collaborate in a system
+* Goal:
 
-72
-00:03:02,800 --> 00:03:07,280
-from end to end with all the industry
+  * Help learners **see the big picture of a production-grade backend**
+  * Understand concepts **hidden behind frameworks, languages, and libraries**
 
-73
-00:03:04,680 --> 00:03:08,959
-standards and best practices we will
+---
 
-74
-00:03:07,280 --> 00:03:11,239
-build quite a few of these projects
+## Phase 1: Story & Philosophy
 
-75
-00:03:08,959 --> 00:03:13,920
-which you can follow along if you want
+* Focus on:
 
-76
-00:03:11,239 --> 00:03:16,560
-so let's write it
+  * Conceptual understanding
+  * System thinking
+  * Patterns across backend systems
 
-77
-00:03:13,920 --> 00:03:18,920
-down
+### Key Outcomes
 
-78
-00:03:16,560 --> 00:03:21,080
-production
+* Develop **language-agnostic skills**
+* Understand:
 
-79
-00:03:18,920 --> 00:03:24,000
-level
+  * Common backend patterns
+  * How different components connect
+* Move beyond:
 
-80
-00:03:21,080 --> 00:03:26,680
-projects right by the end of this
+  * Framework-specific knowledge
+  * Library-specific implementation
 
-81
-00:03:24,000 --> 00:03:29,000
-journey that is if you decide to take it
+### Importance
 
-82
-00:03:26,680 --> 00:03:31,280
-and if you internalized everything and
+* This is the **first step to becoming a backend engineer**
+* Builds **strong foundational intuition**
 
-83
-00:03:29,000 --> 00:03:33,319
-followed along with all the projects you
+---
 
-84
-00:03:31,280 --> 00:03:35,760
-should be safely able to call yourself a
+## Transition to Implementation
 
-85
-00:03:33,319 --> 00:03:38,760
-backend engineer and you should be able
+* Once fundamentals are clear:
 
-86
-00:03:35,760 --> 00:03:41,680
-to go out there and build real systems
+  * Start learning **implementations**
+* Focus shifts to:
 
-87
-00:03:38,760 --> 00:03:43,680
-systems that scale systems that start
+  * How principles translate into **real code**
+  * How systems are actually built
 
-88
-00:03:41,680 --> 00:03:46,720
-from zero users and scale to a million
+---
 
-89
-00:03:43,680 --> 00:03:50,319
-users systems that people can maintain
+## Phase 2: Implementation (Language-Specific)
 
-90
-00:03:46,720 --> 00:03:54,400
-over a long period of time so with those
+* Choose:
 
-91
-00:03:50,319 --> 00:03:54,400
-expectations let's start
+  * Programming language
+  * Ecosystem
 
+### Planned Implementations
+
+* **Node.js**
+* **Golang**
+
+### Approach
+
+* Each concept from Phase 1 will:
+
+  * Have a corresponding **implementation video**
+* Deep dive into:
+
+  * Real tools
+  * Real libraries
+  * Real workflows
+
+### Example
+
+* Concept: Databases
+
+  * Learn theory in Phase 1
+  * Implement using:
+
+    * PostgreSQL
+    * Node.js driver (e.g., postgres.js)
+    * Go driver (e.g., pgx)
+
+### Goal
+
+* Bridge gap between:
+
+  * Theory → Practice
+
+---
+
+## Phase 3: Production-Level Projects
+
+* Build **end-to-end backend systems**
+
+### Focus
+
+* Real-world, production-grade applications
+* Industry standards and best practices
+
+### Features
+
+* Multiple projects
+* Hands-on learning
+* Follow-along implementation
+
+### Key Outcomes
+
+* Ability to:
+
+  * Build scalable systems
+  * Design maintainable architectures
+  * Handle real-world complexity
+
+---
+
+## Final Outcome of the Journey
+
+* Learner should be able to:
+
+  * Confidently call themselves a **backend engineer**
+  * Build **real systems**:
+
+    * From 0 → millions of users
+    * Scalable and maintainable
+* Understand:
+
+  * System design
+  * Engineering trade-offs
+  * Production practices
+
+---
+
+## Learning Philosophy
+
+* Start with:
+
+  * **Understanding → Patterns → Philosophy**
+* Then move to:
+
+  * **Implementation → Code → Tools**
+* Finally:
+
+  * **Real-world systems → Projects**
+
+---
+
+## Key Takeaway
+
+* Backend engineering is not about:
+
+  * Just coding APIs
+
+* It is about:
+
+  * Understanding systems deeply
+  * Connecting concepts
+  * Applying them in real-world scenarios
+
+---
