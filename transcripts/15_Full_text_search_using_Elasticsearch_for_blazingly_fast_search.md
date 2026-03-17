@@ -130,9 +130,14 @@
   * Checking every document
   * Repeated computation
 
----
+---  
 
 # Relevance Scoring
+
+<img width="399" height="179" alt="image" src="https://github.com/user-attachments/assets/8011c0df-3dfe-411e-8f92-d8f541f7297d" />
+
+<img width="1666" height="794" alt="image" src="https://github.com/user-attachments/assets/7320ddab-1652-4a24-8a28-01cf6cf6428e" />
+
 
 ## Problem Solved
 
@@ -293,6 +298,9 @@
 ---
 
 ## Performance Comparison
+
+<img width="1666" height="794" alt="image" src="https://github.com/user-attachments/assets/3c23e063-b44e-4ed6-85a5-5d5807ac65cd" />
+
 
 * Elasticsearch:
 
