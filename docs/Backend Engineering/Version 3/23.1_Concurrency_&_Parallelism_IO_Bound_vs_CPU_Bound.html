@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Backend Engineering/Version 3/23.1_Concurrency_&_Parallelism_IO_Bound_vs_CPU_Bound" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Concurrency &amp; Parallelism in Backend Systems | CS &amp; Dev Notes</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://DeshDeepakKant.github.io/Backend-Notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://DeshDeepakKant.github.io/Backend-Notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://DeshDeepakKant.github.io/Backend-Notes/docs/Backend Engineering/Version 3/23.1_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="keywords" content="computer science, engineering, architecture, systems, backend, frontend, devops, databases, distributed systems"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Concurrency &amp; Parallelism in Backend Systems | CS &amp; Dev Notes"><meta data-rh="true" name="description" content="---"><meta data-rh="true" property="og:description" content="---"><link data-rh="true" rel="icon" href="/Backend-Notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://DeshDeepakKant.github.io/Backend-Notes/docs/Backend Engineering/Version 3/23.1_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound"><link data-rh="true" rel="alternate" href="https://DeshDeepakKant.github.io/Backend-Notes/docs/Backend Engineering/Version 3/23.1_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound" hreflang="en"><link data-rh="true" rel="alternate" href="https://DeshDeepakKant.github.io/Backend-Notes/docs/Backend Engineering/Version 3/23.1_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Concurrency & Parallelism in Backend Systems","item":"https://DeshDeepakKant.github.io/Backend-Notes/docs/Backend Engineering/Version 3/23.1_Concurrency_&_Parallelism_IO_Bound_vs_CPU_Bound"}]}</script><link rel="stylesheet" href="/Backend-Notes/assets/css/styles.2a0529d2.css">
+<script src="/Backend-Notes/assets/js/runtime~main.73ec041b.js" defer="defer"></script>
+<script src="/Backend-Notes/assets/js/main.4aea21f1.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/Backend-Notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Backend-Notes/"><div class="navbar__logo"><img src="/Backend-Notes/img/logo.svg" alt="CS Notes Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/Backend-Notes/img/logo.svg" alt="CS Notes Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">CS &amp; Dev Notes</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Backend-Notes/docs/Backend Engineering/Version 1/Roadmap_for_backend_from_first_principles">Start Learning</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/DeshDeepakKant/Backend-Notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/Backend-Notes/docs/Backend Engineering/Version 1/Roadmap_for_backend_from_first_principles"><span title="Backend Engineering" class="categoryLinkLabel_W154">Backend Engineering</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 1/Roadmap_for_backend_from_first_principles"><span title="Version 1 (Original)" class="categoryLinkLabel_W154">Version 1 (Original)</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 2/Roadmap"><span title="Modern Version 2" class="categoryLinkLabel_W154">Modern Version 2</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Roadmap_for_backend_from_first_principles"><span title="Version 3 (Raw Transcripts)" class="categoryLinkLabel_W154">Version 3 (Raw Transcripts)</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Roadmap_for_backend_from_first_principles"><span title="Backend Engineering Roadmap &amp; Big Picture" class="linkLabel_WmDU">Backend Engineering Roadmap &amp; Big Picture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Walk_the_path_of_a_true_backend_engineer"><span title="Backend Engineering Learning Approach" class="linkLabel_WmDU">Backend Engineering Learning Approach</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/What_is_a_Backend,_how_do_they_work_and_why_do_we_need_them"><span title="Backend Fundamentals: How Requests Flow &amp; Why Backend Exists" class="linkLabel_WmDU">Backend Fundamentals: How Requests Flow &amp; Why Backend Exists</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Benefits_of_learning_backend_engineering_from_first_principles"><span title="Why Learn Backend from First Principles" class="linkLabel_WmDU">Why Learn Backend from First Principles</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Understanding_HTTP_for_backend_engineers,_where_it_all_starts"><span title="HTTP Protocol Fundamentals (Backend Essentials)" class="linkLabel_WmDU">HTTP Protocol Fundamentals (Backend Essentials)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/What_is_Routing_in_Backend_How_Requests_Find_Their_Way_Home"><span title="Routing in Backend Systems" class="linkLabel_WmDU">Routing in Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Authentication_and_authorization_for_backend_engineers"><span title="Authentication &amp; Authorization — Detailed Learning Notes" class="linkLabel_WmDU">Authentication &amp; Authorization — Detailed Learning Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Validations_and_transformations_for_backend_engineers"><span title="API Validations &amp; Transformations — Detailed Learning Notes" class="linkLabel_WmDU">API Validations &amp; Transformations — Detailed Learning Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/What_are_controllers,_services,_repositories,_middlewares_and_request_context"><span title="Handlers, Services, Repositories, Middleware &amp; Request Context — Detailed Notes" class="linkLabel_WmDU">Handlers, Services, Repositories, Middleware &amp; Request Context — Detailed Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Caching,_the_secret_behind_it_all"><span title="Caching in Backend Systems" class="linkLabel_WmDU">Caching in Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Task_queues_and_background_jobs"><span title="Background Jobs / Background Tasks in Backend" class="linkLabel_WmDU">Background Jobs / Background Tasks in Backend</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Full_text_search_using_Elasticsearch_for_blazingly_fast_search"><span title="Full-Text Search &amp; Elasticsearch – Structured Notes" class="linkLabel_WmDU">Full-Text Search &amp; Elasticsearch – Structured Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Error_Handling_and_Building_Fault_Tolerant_Systems"><span title="Error Handling &amp; Fault-Tolerant Mindset (Backend)" class="linkLabel_WmDU">Error Handling &amp; Fault-Tolerant Mindset (Backend)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Production-grade_Configuration_Management"><span title="Configuration Management in Backend Systems" class="linkLabel_WmDU">Configuration Management in Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Logging,_Monitoring_and_Observability"><span title="Logging, Monitoring, and Observability" class="linkLabel_WmDU">Logging, Monitoring, and Observability</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/Graceful_Shutdown"><span title="Graceful Shutdown in Backend Systems" class="linkLabel_WmDU">Graceful Shutdown in Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/07_1_Serialization_and_Deserialization_for_backend_engineers"><span title="Serialization &amp; Deserialization (Client–Server Communication)" class="linkLabel_WmDU">Serialization &amp; Deserialization (Client–Server Communication)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/07_2_Serialization_and_Deserialization_for_backend_engineers"><span title="Serialization Deep Dive for System Design (Interview + Real World)" class="linkLabel_WmDU">Serialization Deep Dive for System Design (Interview + Real World)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/11.1_Complete_REST_API_Design"><span title="API Design (REST) — Detailed Learning Notes" class="linkLabel_WmDU">API Design (REST) — Detailed Learning Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/11.2_Complete_REST_API_Design"><span title="REST API Methods &amp; API Design – Detailed Notes" class="linkLabel_WmDU">REST API Methods &amp; API Design – Detailed Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/11.3_Complete_REST_API_Design"><span title="11.3_Complete_REST_API_Design" class="linkLabel_WmDU">11.3_Complete_REST_API_Design</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/12.1_Mastering_Databases_with_Postgres"><span title="Databases for Backend Systems" class="linkLabel_WmDU">Databases for Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/12.2_Mastering_Databases_with_Postgres"><span title="Building API Queries with PostgreSQL" class="linkLabel_WmDU">Building API Queries with PostgreSQL</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/12.3_Mastering_Databases_with_Postgres"><span title="Backend Database Queries, Indexes, and Triggers (Structured Notes)" class="linkLabel_WmDU">Backend Database Queries, Indexes, and Triggers (Structured Notes)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/20.1_Backend_Security_Everything_You_Need_to_Know"><span title="Backend Security Fundamentals (Intro + Injection Attacks)" class="linkLabel_WmDU">Backend Security Fundamentals (Intro + Injection Attacks)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/20.2_Backend_Security_Everything_You_Need_to_Know"><span title="Authentication Security &amp; Vulnerabilities" class="linkLabel_WmDU">Authentication Security &amp; Vulnerabilities</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/20.3_Backend_Security_Everything_You_Need_to_Know"><span title="Advanced Security: Rate Limiting, Authorization &amp; XSS" class="linkLabel_WmDU">Advanced Security: Rate Limiting, Authorization &amp; XSS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/21_1._Backend_Scaling_and_Performance_Engineering_Part-1"><span title="Scaling &amp; Performance in Backend Systems" class="linkLabel_WmDU">Scaling &amp; Performance in Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/21_2._Backend_Scaling_and_Performance_Engineering_Part-1"><span title="Scaling &amp; Performance in Backend Systems (Part 2)" class="linkLabel_WmDU">Scaling &amp; Performance in Backend Systems (Part 2)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/22_1._Backend_Scaling_and_Performance_Engineering_Part-2"><span title="Scaling &amp; Performance in Backend Systems (Part 3)" class="linkLabel_WmDU">Scaling &amp; Performance in Backend Systems (Part 3)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/22_2._Backend_Scaling_and_Performance_Engineering_Part-2"><span title="Backend Scaling &amp; Performance – Structured Notes" class="linkLabel_WmDU">Backend Scaling &amp; Performance – Structured Notes</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/23.1_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound"><span title="Concurrency &amp; Parallelism in Backend Systems" class="linkLabel_WmDU">Concurrency &amp; Parallelism in Backend Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Backend-Notes/docs/Backend Engineering/Version 3/23.2_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound"><span title="Concurrency Models, Event Loop &amp; Race Conditions" class="linkLabel_WmDU">Concurrency Models, Event Loop &amp; Race Conditions</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Backend-Notes/docs/DevOps/Version 1/Beginner_Layer_CI"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Backend-Notes/docs/System Design/Version 1/intro"><span title="System Design" class="categoryLinkLabel_W154">System Design</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Backend-Notes/docs/Operating System/Version 1/intro"><span title="Operating System" class="categoryLinkLabel_W154">Operating System</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Backend-Notes/docs/DBMS/Version 1/intro"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Backend-Notes/docs/Computer Network/Version 1/intro"><span title="Computer Network" class="categoryLinkLabel_W154">Computer Network</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/Backend-Notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Backend Engineering</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Version 3 (Raw Transcripts)</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Concurrency &amp; Parallelism in Backend Systems</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Concurrency &amp; Parallelism in Backend Systems</h1></header>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-backend-systems-need-concurrency">Why Backend Systems Need Concurrency<a href="#why-backend-systems-need-concurrency" class="hash-link" aria-label="Direct link to Why Backend Systems Need Concurrency" title="Direct link to Why Backend Systems Need Concurrency" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Every backend system must <strong>handle multiple requests simultaneously</strong></p>
+</li>
+<li class="">
+<p>If a server handles only one request at a time:</p>
+<ul>
+<li class="">Other users must wait</li>
+<li class="">Leads to poor performance or failures</li>
+</ul>
+</li>
+<li class="">
+<p>Concurrency helps:</p>
+<ul>
+<li class="">Utilize system resources efficiently</li>
+<li class="">Handle thousands of users concurrently</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="typical-request-lifecycle">Typical Request Lifecycle<a href="#typical-request-lifecycle" class="hash-link" aria-label="Direct link to Typical Request Lifecycle" title="Direct link to Typical Request Lifecycle" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>User → Server → Database → Response</p>
+</li>
+<li class="">
+<p>Key observation:</p>
+<ul>
+<li class="">Server spends significant time <strong>waiting for external systems</strong> (DB, APIs)</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="network-latency-examples">Network Latency Examples<a href="#network-latency-examples" class="hash-link" aria-label="Direct link to Network Latency Examples" title="Direct link to Network Latency Examples" translate="no">​</a></h3>
+<ul>
+<li class="">Local DB: ~1–2 ms</li>
+<li class="">Same region: ~20–30 ms</li>
+<li class="">Different region: ~90–100 ms</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-core-problem-idle-cpu">The Core Problem: Idle CPU<a href="#the-core-problem-idle-cpu" class="hash-link" aria-label="Direct link to The Core Problem: Idle CPU" title="Direct link to The Core Problem: Idle CPU" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>While waiting for DB response:</p>
+<ul>
+<li class="">CPU does <strong>nothing</strong></li>
+</ul>
+</li>
+<li class="">
+<p>Modern CPU capability:</p>
+<ul>
+<li class="">~3 billion instructions/sec (~3 million per ms)</li>
+</ul>
+</li>
+<li class="">
+<p>Example:</p>
+<ul>
+<li class="">100 ms wait → <strong>300 million instructions wasted</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="io-vs-cpu-work">IO vs CPU Work<a href="#io-vs-cpu-work" class="hash-link" aria-label="Direct link to IO vs CPU Work" title="Direct link to IO vs CPU Work" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="io-bound-work">IO-Bound Work<a href="#io-bound-work" class="hash-link" aria-label="Direct link to IO-Bound Work" title="Direct link to IO-Bound Work" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Waiting for:</p>
+<ul>
+<li class="">Database</li>
+<li class="">External APIs</li>
+<li class="">File system</li>
+</ul>
+</li>
+<li class="">
+<p>Takes <strong>~70–95% of time</strong> in backend systems</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cpu-bound-work">CPU-Bound Work<a href="#cpu-bound-work" class="hash-link" aria-label="Direct link to CPU-Bound Work" title="Direct link to CPU-Bound Work" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Actual computation:</p>
+<ul>
+<li class="">Validation</li>
+<li class="">JSON parsing</li>
+<li class="">Encryption</li>
+<li class="">Image processing</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-insight">Key Insight<a href="#key-insight" class="hash-link" aria-label="Direct link to Key Insight" title="Direct link to Key Insight" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Typical API call:</p>
+<ul>
+<li class="">~250 ms IO waiting</li>
+<li class="">~10 ms CPU work</li>
+</ul>
+</li>
+<li class="">
+<p>Result:</p>
+<ul>
+<li class=""><strong>95% resource underutilization</strong> without concurrency</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-is-concurrency">What is Concurrency?<a href="#what-is-concurrency" class="hash-link" aria-label="Direct link to What is Concurrency?" title="Direct link to What is Concurrency?" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Ability to <strong>handle multiple tasks at once (logically)</strong></p>
+</li>
+<li class="">
+<p>CPU switches between tasks:</p>
+<ul>
+<li class="">Start → Pause → Resume</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-idea">Key Idea<a href="#key-idea" class="hash-link" aria-label="Direct link to Key Idea" title="Direct link to Key Idea" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>While one task waits (IO):</p>
+<ul>
+<li class="">CPU works on another task</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-is-parallelism">What is Parallelism?<a href="#what-is-parallelism" class="hash-link" aria-label="Direct link to What is Parallelism?" title="Direct link to What is Parallelism?" translate="no">​</a></h2>
+<ul>
+<li class="">Ability to <strong>execute multiple tasks simultaneously (physically)</strong></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="requirement">Requirement<a href="#requirement" class="hash-link" aria-label="Direct link to Requirement" title="Direct link to Requirement" translate="no">​</a></h3>
+<ul>
+<li class="">Multiple CPU cores</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="concurrency-vs-parallelism">Concurrency vs Parallelism<a href="#concurrency-vs-parallelism" class="hash-link" aria-label="Direct link to Concurrency vs Parallelism" title="Direct link to Concurrency vs Parallelism" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="concurrency">Concurrency<a href="#concurrency" class="hash-link" aria-label="Direct link to Concurrency" title="Direct link to Concurrency" translate="no">​</a></h3>
+<ul>
+<li class="">Single CPU core</li>
+<li class="">Tasks interleave execution</li>
+<li class="">Improves <strong>resource utilization</strong></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="parallelism">Parallelism<a href="#parallelism" class="hash-link" aria-label="Direct link to Parallelism" title="Direct link to Parallelism" translate="no">​</a></h3>
+<ul>
+<li class="">Multiple CPU cores</li>
+<li class="">Tasks run at same time</li>
+<li class="">Improves <strong>execution speed</strong></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="simple-analogy">Simple Analogy<a href="#simple-analogy" class="hash-link" aria-label="Direct link to Simple Analogy" title="Direct link to Simple Analogy" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Concurrency:</p>
+<ul>
+<li class="">One chef cooking multiple dishes (switching tasks)</li>
+</ul>
+</li>
+<li class="">
+<p>Parallelism:</p>
+<ul>
+<li class="">Multiple chefs cooking simultaneously</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="timeline-understanding-conceptual">Timeline Understanding (Conceptual)<a href="#timeline-understanding-conceptual" class="hash-link" aria-label="Direct link to Timeline Understanding (Conceptual)" title="Direct link to Timeline Understanding (Conceptual)" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Request A starts → uses CPU → waits (DB)</p>
+</li>
+<li class="">
+<p>CPU switches to Request B</p>
+</li>
+<li class="">
+<p>When A’s response returns:</p>
+<ul>
+<li class="">CPU resumes A later</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-point">Key Point<a href="#key-point" class="hash-link" aria-label="Direct link to Key Point" title="Direct link to Key Point" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>At any moment:</p>
+<ul>
+<li class="">Only one task runs (single core)</li>
+<li class="">But multiple tasks are <strong>in progress</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-this-matters">Why This Matters<a href="#why-this-matters" class="hash-link" aria-label="Direct link to Why This Matters" title="Direct link to Why This Matters" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Backend systems are <strong>mostly IO-bound</strong></p>
+</li>
+<li class="">
+<p>Without concurrency:</p>
+<ul>
+<li class="">CPU stays idle most of the time</li>
+</ul>
+</li>
+<li class="">
+<p>With concurrency:</p>
+<ul>
+<li class="">CPU is always utilized</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-to-use-what">When to Use What<a href="#when-to-use-what" class="hash-link" aria-label="Direct link to When to Use What" title="Direct link to When to Use What" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-concurrency-most-cases">Use Concurrency (Most Cases)<a href="#use-concurrency-most-cases" class="hash-link" aria-label="Direct link to Use Concurrency (Most Cases)" title="Direct link to Use Concurrency (Most Cases)" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>IO-heavy workloads:</p>
+<ul>
+<li class="">DB queries</li>
+<li class="">API calls</li>
+<li class="">File operations</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-parallelism">Use Parallelism<a href="#use-parallelism" class="hash-link" aria-label="Direct link to Use Parallelism" title="Direct link to Use Parallelism" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>CPU-heavy workloads:</p>
+<ul>
+<li class="">Image processing</li>
+<li class="">Encryption</li>
+<li class="">Video encoding</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="real-world-backend-behavior">Real-World Backend Behavior<a href="#real-world-backend-behavior" class="hash-link" aria-label="Direct link to Real-World Backend Behavior" title="Direct link to Real-World Backend Behavior" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Server handles:</p>
+<ul>
+<li class="">HTTP requests</li>
+<li class="">Logging</li>
+<li class="">Background jobs</li>
+<li class="">Telemetry</li>
+</ul>
+</li>
+<li class="">
+<p>All compete for CPU time</p>
+</li>
+<li class="">
+<p>Concurrency ensures:</p>
+<ul>
+<li class="">Efficient scheduling across all tasks</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-concurrency-is-implemented">How Concurrency is Implemented<a href="#how-concurrency-is-implemented" class="hash-link" aria-label="Direct link to How Concurrency is Implemented" title="Direct link to How Concurrency is Implemented" translate="no">​</a></h2>
+<p>Two main mechanisms:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-threads">1. Threads<a href="#1-threads" class="hash-link" aria-label="Direct link to 1. Threads" title="Direct link to 1. Threads" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>OS-level execution units</p>
+</li>
+<li class="">
+<p>Each thread:</p>
+<ul>
+<li class="">Has its own stack</li>
+<li class="">Has instruction pointer</li>
+</ul>
+</li>
+<li class="">
+<p>Managed by <strong>OS scheduler</strong></p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="thread-scheduling">Thread Scheduling<a href="#thread-scheduling" class="hash-link" aria-label="Direct link to Thread Scheduling" title="Direct link to Thread Scheduling" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>OS assigns <strong>time slices</strong> (e.g., 2 ms)</p>
+</li>
+<li class="">
+<p>After time slice:</p>
+<ul>
+<li class="">Thread pauses</li>
+<li class="">Another thread runs</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="preemptive-scheduling">Preemptive Scheduling<a href="#preemptive-scheduling" class="hash-link" aria-label="Direct link to Preemptive Scheduling" title="Direct link to Preemptive Scheduling" translate="no">​</a></h3>
+<ul>
+<li class="">Threads are stopped automatically by OS</li>
+<li class="">Ensures fairness across tasks</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="blocking-behavior">Blocking Behavior<a href="#blocking-behavior" class="hash-link" aria-label="Direct link to Blocking Behavior" title="Direct link to Blocking Behavior" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>When thread hits IO:</p>
+<ul>
+<li class="">Marked as <strong>blocked</strong></li>
+</ul>
+</li>
+<li class="">
+<p>OS switches to another thread</p>
+</li>
+<li class="">
+<p>Once IO completes:</p>
+<ul>
+<li class="">Thread becomes runnable again</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="memory-model-of-threads">Memory Model of Threads<a href="#memory-model-of-threads" class="hash-link" aria-label="Direct link to Memory Model of Threads" title="Direct link to Memory Model of Threads" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="within-same-process">Within Same Process<a href="#within-same-process" class="hash-link" aria-label="Direct link to Within Same Process" title="Direct link to Within Same Process" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Threads share:</p>
+<ul>
+<li class="">Heap memory</li>
+<li class="">Global variables</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="between-processes">Between Processes<a href="#between-processes" class="hash-link" aria-label="Direct link to Between Processes" title="Direct link to Between Processes" translate="no">​</a></h3>
+<ul>
+<li class="">No shared memory (isolated)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="communication-between-threads">Communication Between Threads<a href="#communication-between-threads" class="hash-link" aria-label="Direct link to Communication Between Threads" title="Direct link to Communication Between Threads" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>Done via <strong>shared memory</strong></p>
+</li>
+<li class="">
+<p>Advantages:</p>
+<ul>
+<li class="">Fast (no serialization)</li>
+</ul>
+</li>
+<li class="">
+<p>Risks:</p>
+<ul>
+<li class="">Race conditions</li>
+<li class="">Data corruption</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="parallelism-with-threads">Parallelism with Threads<a href="#parallelism-with-threads" class="hash-link" aria-label="Direct link to Parallelism with Threads" title="Direct link to Parallelism with Threads" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>If multiple CPU cores:</p>
+<ul>
+<li class="">Multiple threads run truly in parallel</li>
+</ul>
+</li>
+<li class="">
+<p>Improves:</p>
+<ul>
+<li class="">CPU-bound performance</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="cost-of-threads">Cost of Threads<a href="#cost-of-threads" class="hash-link" aria-label="Direct link to Cost of Threads" title="Direct link to Cost of Threads" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-memory-overhead">1. Memory Overhead<a href="#1-memory-overhead" class="hash-link" aria-label="Direct link to 1. Memory Overhead" title="Direct link to 1. Memory Overhead" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Each thread:</p>
+<ul>
+<li class="">Stack ~KBs to MBs</li>
+</ul>
+</li>
+<li class="">
+<p>Example:</p>
+<ul>
+<li class="">10,000 threads → several GB memory</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-creation-overhead">2. Creation Overhead<a href="#2-creation-overhead" class="hash-link" aria-label="Direct link to 2. Creation Overhead" title="Direct link to 2. Creation Overhead" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Creating thread involves:</p>
+<ul>
+<li class="">System call</li>
+<li class="">Stack allocation</li>
+<li class="">Scheduler registration</li>
+</ul>
+</li>
+<li class="">
+<p>Takes:</p>
+<ul>
+<li class="">Microseconds to milliseconds</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-takeaways">Key Takeaways<a href="#key-takeaways" class="hash-link" aria-label="Direct link to Key Takeaways" title="Direct link to Key Takeaways" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-backend-bottleneck">1. Backend Bottleneck<a href="#1-backend-bottleneck" class="hash-link" aria-label="Direct link to 1. Backend Bottleneck" title="Direct link to 1. Backend Bottleneck" translate="no">​</a></h3>
+<ul>
+<li class="">Mostly <strong>IO-bound</strong>, not CPU-bound</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-concurrency-is-essential">2. Concurrency is Essential<a href="#2-concurrency-is-essential" class="hash-link" aria-label="Direct link to 2. Concurrency is Essential" title="Direct link to 2. Concurrency is Essential" translate="no">​</a></h3>
+<ul>
+<li class="">Prevents CPU idle time</li>
+<li class="">Enables handling many users</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-parallelism-is-situational">3. Parallelism is Situational<a href="#3-parallelism-is-situational" class="hash-link" aria-label="Direct link to 3. Parallelism is Situational" title="Direct link to 3. Parallelism is Situational" translate="no">​</a></h3>
+<ul>
+<li class="">Useful for heavy computation tasks</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-threads-are-powerful-but-expensive">4. Threads are Powerful but Expensive<a href="#4-threads-are-powerful-but-expensive" class="hash-link" aria-label="Direct link to 4. Threads are Powerful but Expensive" title="Direct link to 4. Threads are Powerful but Expensive" translate="no">​</a></h3>
+<ul>
+<li class="">High memory + creation cost</li>
+<li class="">Need careful management</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="mental-model-to-remember">Mental Model to Remember<a href="#mental-model-to-remember" class="hash-link" aria-label="Direct link to Mental Model to Remember" title="Direct link to Mental Model to Remember" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>CPU is valuable → never keep it idle</p>
+</li>
+<li class="">
+<p>While waiting → do other work</p>
+</li>
+<li class="">
+<p>Structure program to:</p>
+<ul>
+<li class="">Pause IO tasks</li>
+<li class="">Resume later</li>
+<li class="">Keep CPU busy</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>If you want next, I can:</p>
+<ul>
+<li class="">Explain <strong>event loop (Node.js style)</strong> vs threads (very important for interviews)</li>
+<li class="">Or give <strong>code-level intuition (C++ / Go / Node)</strong> so it clicks practically</li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/Backend-Notes/docs/Backend Engineering/Version 3/22_2._Backend_Scaling_and_Performance_Engineering_Part-2"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Backend Scaling &amp; Performance – Structured Notes</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/Backend-Notes/docs/Backend Engineering/Version 3/23.2_Concurrency_&amp;_Parallelism_IO_Bound_vs_CPU_Bound"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Concurrency Models, Event Loop &amp; Race Conditions</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#why-backend-systems-need-concurrency" class="table-of-contents__link toc-highlight">Why Backend Systems Need Concurrency</a></li><li><a href="#typical-request-lifecycle" class="table-of-contents__link toc-highlight">Typical Request Lifecycle</a><ul><li><a href="#network-latency-examples" class="table-of-contents__link toc-highlight">Network Latency Examples</a></li></ul></li><li><a href="#the-core-problem-idle-cpu" class="table-of-contents__link toc-highlight">The Core Problem: Idle CPU</a></li><li><a href="#io-vs-cpu-work" class="table-of-contents__link toc-highlight">IO vs CPU Work</a><ul><li><a href="#io-bound-work" class="table-of-contents__link toc-highlight">IO-Bound Work</a></li><li><a href="#cpu-bound-work" class="table-of-contents__link toc-highlight">CPU-Bound Work</a></li></ul></li><li><a href="#key-insight" class="table-of-contents__link toc-highlight">Key Insight</a></li><li><a href="#what-is-concurrency" class="table-of-contents__link toc-highlight">What is Concurrency?</a><ul><li><a href="#key-idea" class="table-of-contents__link toc-highlight">Key Idea</a></li></ul></li><li><a href="#what-is-parallelism" class="table-of-contents__link toc-highlight">What is Parallelism?</a><ul><li><a href="#requirement" class="table-of-contents__link toc-highlight">Requirement</a></li></ul></li><li><a href="#concurrency-vs-parallelism" class="table-of-contents__link toc-highlight">Concurrency vs Parallelism</a><ul><li><a href="#concurrency" class="table-of-contents__link toc-highlight">Concurrency</a></li><li><a href="#parallelism" class="table-of-contents__link toc-highlight">Parallelism</a></li></ul></li><li><a href="#simple-analogy" class="table-of-contents__link toc-highlight">Simple Analogy</a></li><li><a href="#timeline-understanding-conceptual" class="table-of-contents__link toc-highlight">Timeline Understanding (Conceptual)</a><ul><li><a href="#key-point" class="table-of-contents__link toc-highlight">Key Point</a></li></ul></li><li><a href="#why-this-matters" class="table-of-contents__link toc-highlight">Why This Matters</a></li><li><a href="#when-to-use-what" class="table-of-contents__link toc-highlight">When to Use What</a><ul><li><a href="#use-concurrency-most-cases" class="table-of-contents__link toc-highlight">Use Concurrency (Most Cases)</a></li><li><a href="#use-parallelism" class="table-of-contents__link toc-highlight">Use Parallelism</a></li></ul></li><li><a href="#real-world-backend-behavior" class="table-of-contents__link toc-highlight">Real-World Backend Behavior</a></li><li><a href="#how-concurrency-is-implemented" class="table-of-contents__link toc-highlight">How Concurrency is Implemented</a><ul><li><a href="#1-threads" class="table-of-contents__link toc-highlight">1. Threads</a></li><li><a href="#thread-scheduling" class="table-of-contents__link toc-highlight">Thread Scheduling</a></li><li><a href="#preemptive-scheduling" class="table-of-contents__link toc-highlight">Preemptive Scheduling</a></li><li><a href="#blocking-behavior" class="table-of-contents__link toc-highlight">Blocking Behavior</a></li></ul></li><li><a href="#memory-model-of-threads" class="table-of-contents__link toc-highlight">Memory Model of Threads</a><ul><li><a href="#within-same-process" class="table-of-contents__link toc-highlight">Within Same Process</a></li><li><a href="#between-processes" class="table-of-contents__link toc-highlight">Between Processes</a></li></ul></li><li><a href="#communication-between-threads" class="table-of-contents__link toc-highlight">Communication Between Threads</a></li><li><a href="#parallelism-with-threads" class="table-of-contents__link toc-highlight">Parallelism with Threads</a></li><li><a href="#cost-of-threads" class="table-of-contents__link toc-highlight">Cost of Threads</a><ul><li><a href="#1-memory-overhead" class="table-of-contents__link toc-highlight">1. Memory Overhead</a></li><li><a href="#2-creation-overhead" class="table-of-contents__link toc-highlight">2. Creation Overhead</a></li></ul></li><li><a href="#key-takeaways" class="table-of-contents__link toc-highlight">Key Takeaways</a><ul><li><a href="#1-backend-bottleneck" class="table-of-contents__link toc-highlight">1. Backend Bottleneck</a></li><li><a href="#2-concurrency-is-essential" class="table-of-contents__link toc-highlight">2. Concurrency is Essential</a></li><li><a href="#3-parallelism-is-situational" class="table-of-contents__link toc-highlight">3. Parallelism is Situational</a></li><li><a href="#4-threads-are-powerful-but-expensive" class="table-of-contents__link toc-highlight">4. Threads are Powerful but Expensive</a></li></ul></li><li><a href="#mental-model-to-remember" class="table-of-contents__link toc-highlight">Mental Model to Remember</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Curriculum</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/Backend-Notes/docs/Backend Engineering/Modern Version 2/01_Roadmap">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" href="/Backend-Notes/docs/Backend Engineering/Modern Version 2/02_Walk_the_Path">System Design</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/DeshDeepakKant/Backend-Notes" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Backend Engineering Notes. Focused on First Principles.</div></div></div></footer></div>
+</body>
+</html>
