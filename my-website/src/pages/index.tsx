@@ -19,8 +19,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/backend/01_Roadmap">
-            View the Roadmap 🚀
+            to="/docs/Backend Engineering/Modern Version 2/01_Roadmap">
+            Start Learning 🚀
           </Link>
         </div>
       </div>
@@ -31,24 +31,39 @@ function HomepageHeader() {
 const FeatureList = [
   {
     title: 'Backend Engineering',
-    description: 'Complete transcripts and deep-dive notes from the Backend from First Principles series.',
+    description: 'Complete transcripts and deep-dive notes for backend systems.',
     icon: '🏗️',
-    link: '/docs/backend/01_Roadmap',
+    link: '/docs/Backend Engineering/Modern Version 2/01_Roadmap',
   },
   {
-    title: 'Core Systems',
-    description: 'Understanding how operating systems, processes, and memory management work at the lowest level.',
+    title: 'DevOps',
+    description: 'CI/CD, containerization, orchestration, and infrastructure as code.',
+    icon: '🚀',
+    link: '/docs/DevOps/Version 1/intro',
+  },
+  {
+    title: 'System Design',
+    description: 'Architecting scalable, highly available, and resilient large-scale systems.',
+    icon: '📐',
+    link: '/docs/System Design/Version 1/intro',
+  },
+  {
+    title: 'Operating System',
+    description: 'Understanding memory management, processes, threads, and concurrency.',
     icon: '💻',
+    link: '/docs/Operating System/Version 1/intro',
   },
   {
-    title: 'Databases & Storage',
-    description: 'Deep dives into PostgreSQL, indexing, transaction isolation, and distributed data systems.',
+    title: 'DBMS',
+    description: 'Relational, NoSQL, indexing, transaction isolation, and query optimization.',
     icon: '🗄️',
+    link: '/docs/DBMS/Version 1/intro',
   },
   {
-    title: 'Networking & APIs',
-    description: 'Mastering TCP/IP, DNS, HTTP, WebSockets, and building robust communication layers.',
+    title: 'Computer Network',
+    description: 'Mastering TCP/IP, DNS, HTTP, WebSockets, and network security.',
     icon: '🌐',
+    link: '/docs/Computer Network/Version 1/intro',
   },
 ];
 
@@ -61,7 +76,7 @@ function Feature({ title, description, icon, link }: { title: string; descriptio
         <p>{description}</p>
         {link && (
           <Link className="button button--primary button--sm" to={link}>
-            Explore Transcripts →
+            Read Notes →
           </Link>
         )}
       </div>

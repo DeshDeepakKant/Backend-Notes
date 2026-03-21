@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Backend Engineering Notes',
-  tagline: 'Deep dives into systems, databases, and architecture from first principles.',
+  title: 'CS & Dev Notes',
+  tagline: 'Deep dives into engineering, systems, databases, and architecture from first principles.',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -42,17 +42,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          lastVersion: 'current',
-          versions: {
-            current: {
-              label: 'Version 2 (Modern)',
-              path: '',
-            },
-            '1.0.0': {
-              label: 'Version 1 (Original)',
-              path: '1.0.0',
-            },
-          },
         },
         blog: false,
         theme: {
@@ -66,7 +55,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     metadata: [
-      { name: 'keywords', content: 'backend, engineering, architecture, systems, databases, distributed systems' },
+      { name: 'keywords', content: 'computer science, engineering, architecture, systems, backend, frontend, devops, databases, distributed systems' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
     colorMode: {
@@ -74,9 +63,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Backend Notes',
+      title: 'CS & Dev Notes',
       logo: {
-        alt: 'Backend Notes Logo',
+        alt: 'CS Notes Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,10 +74,6 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Start Learning',
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
         },
         {
           href: 'https://github.com/DeshDeepakKant/Backend-Notes',
@@ -105,11 +90,11 @@ const config: Config = {
           items: [
             {
               label: 'Roadmap',
-              to: '/docs/backend/01_Roadmap',
+              to: '/docs/Backend Engineering/Modern Version 2/01_Roadmap',
             },
             {
               label: 'System Design',
-              to: '/docs/backend/02_Walk_the_Path',
+              to: '/docs/Backend Engineering/Modern Version 2/02_Walk_the_Path',
             },
           ],
         },

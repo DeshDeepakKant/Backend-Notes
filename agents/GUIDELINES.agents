@@ -1,0 +1,16 @@
+# Technical Guidelines for AI Agents
+
+## Operating Environment
+- **Docusaurus Version**: 3.x
+- **Configuration**: Always check `docusaurus.config.ts` before modifying docs or sidebars.
+
+## File Operations
+1. **Always use Absolute Paths** when calling internal tools.
+2. **Never Propose `cd` Commands**.
+3. **Verify Builds**: After making any structural changes, always run `npm run build` in the `my-website/` directory to ensure no broken links or hierarchy errors.
+
+## Content Management
+- **Markdown Rules**: Adhere to standard GitHub-flavored Markdown.
+- **Frontmatter**: Avoid using `slug:` in documentation unless specifically asked. Let Docusaurus generate URLs from the folder structure.
+- **Images/Media**: Use the `generate_image` tool for visual assets and store them in the `static/` folder of the Docusaurus project.
+- **SEO Ready**: Automatically include descriptive title tags and meta descriptions in new documentation.
