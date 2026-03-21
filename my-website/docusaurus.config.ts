@@ -70,12 +70,6 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Start Learning',
-        },
-        {
           href: 'https://github.com/DeshDeepakKant/Backend-Notes',
           label: 'GitHub',
           position: 'right',

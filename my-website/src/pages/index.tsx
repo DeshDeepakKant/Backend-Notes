@@ -16,13 +16,6 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/Backend Engineering/Modern Version 2/01_Roadmap">
-            Start Learning 🚀
-          </Link>
-        </div>
       </div>
     </header>
   );
@@ -68,18 +61,23 @@ const FeatureList = [
 ];
 
 function Feature({ title, description, icon, link }: { title: string; description: string; icon: string; link?: string }) {
+  const CardContent = (
+    <div className={styles.featureCard}>
+      <div className={styles.featureIcon}>{icon}</div>
+      <Heading as="h3">{title}</Heading>
+      <p>{description}</p>
+    </div>
+  );
+
   return (
-    <div className={clsx('col col--4')}>
-      <div className={styles.featureCard}>
-        <div className={styles.featureIcon}>{icon}</div>
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-        {link && (
-          <Link className="button button--primary button--sm" to={link}>
-            Read Notes →
-          </Link>
-        )}
-      </div>
+    <div className={clsx('col col--4')} style={{ marginBottom: '2rem' }}>
+      {link ? (
+        <Link to={link} style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}>
+          {CardContent}
+        </Link>
+      ) : (
+        CardContent
+      )}
     </div>
   );
 }
