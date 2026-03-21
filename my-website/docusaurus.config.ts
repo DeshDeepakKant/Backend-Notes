@@ -84,7 +84,7 @@ const config: Config = {
           items: [
             {
               label: 'Roadmap',
-              to: '/docs/Backend Engineering/Version 2/01_Roadmap',
+              to: '/docs/Backend Engineering/Version 2/Roadmap',
             },
             {
               label: 'System Design',

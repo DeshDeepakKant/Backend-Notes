@@ -26,7 +26,7 @@ const FeatureList = [
     title: 'Backend Engineering',
     description: 'Complete transcripts and deep-dive notes for backend systems.',
     icon: '🏗️',
-    link: '/docs/Backend Engineering/Version 2/01_Roadmap',
+    link: '/docs/Backend Engineering/Version 2/Roadmap',
   },
   {
     title: 'DevOps',
