@@ -84,11 +84,11 @@ const config: Config = {
           items: [
             {
               label: 'Roadmap',
-              to: '/docs/Backend Engineering/Modern Version 2/01_Roadmap',
+              to: '/docs/Backend Engineering/Version 2/01_Roadmap',
             },
             {
               label: 'System Design',
-              to: '/docs/Backend Engineering/Modern Version 2/02_Walk_the_Path',
+              to: '/docs/System Design/Version 1/intro',
             },
           ],
         },
@@ -102,7 +102,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Backend Engineering Notes. Focused on First Principles.`,
+      copyright: `Copyright © ${new Date().getFullYear()} CS & Dev Notes. Focused on First Principles.`,
     },
     prism: {
       theme: prismThemes.github,
