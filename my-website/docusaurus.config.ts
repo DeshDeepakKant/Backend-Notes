@@ -70,6 +70,37 @@ const config: Config = {
       },
       items: [
         {
+          type: 'dropdown',
+          label: 'Select Version',
+          position: 'right',
+          items: [
+            { label: '--- Backend ---', to: '#' },
+            { label: 'Version 3 (Raw)', to: '/docs/Backend Engineering/Version 3/Roadmap_for_backend_from_first_principles' },
+            { label: 'Version 2 (Modern)', to: '/docs/Backend Engineering/Version 2/Roadmap' },
+            { label: 'Version 1 (Core)', to: '/docs/Backend Engineering/Version 1/Roadmap_for_backend_from_first_principles' },
+            
+            { label: '--- DevOps ---', to: '#' },
+            { label: 'Version 2', to: '/docs/DevOps/Version 2/intro' },
+            { label: 'Version 1', to: '/docs/DevOps/Version 1/intro' },
+
+            { label: '--- System Design ---', to: '#' },
+            { label: 'Version 2', to: '/docs/System Design/Version 2/intro' },
+            { label: 'Version 1', to: '/docs/System Design/Version 1/intro' },
+
+            { label: '--- Operating System ---', to: '#' },
+            { label: 'Version 2', to: '/docs/Operating System/Version 2/intro' },
+            { label: 'Version 1', to: '/docs/Operating System/Version 1/intro' },
+
+            { label: '--- DBMS ---', to: '#' },
+            { label: 'Version 2', to: '/docs/DBMS/Version 2/intro' },
+            { label: 'Version 1', to: '/docs/DBMS/Version 1/intro' },
+
+            { label: '--- Computer Network ---', to: '#' },
+            { label: 'Version 2', to: '/docs/Computer Network/Version 2/intro' },
+            { label: 'Version 1', to: '/docs/Computer Network/Version 1/intro' },
+          ],
+        },
+        {
           href: 'https://github.com/DeshDeepakKant/Backend-Notes',
           label: 'GitHub',
           position: 'right',
