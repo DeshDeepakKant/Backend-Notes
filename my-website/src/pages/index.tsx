@@ -58,6 +58,12 @@ const FeatureList = [
     icon: '🌐',
     link: '/docs/Computer Network/Version 1/intro',
   },
+  {
+    title: 'Topics',
+    description: 'Small topics',
+    icon: '🌐',
+    link: '/docs/Topics/Version 1/intro',
+  },
 ];
 
 function Feature({ title, description, icon, link }: { title: string; description: string; icon: string; link?: string }) {
